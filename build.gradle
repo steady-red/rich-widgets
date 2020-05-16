@@ -1,0 +1,93 @@
+
+description = 'rich-widgets'
+
+buildscript {
+  if ( new File("c:\\").exists() == false) {
+	println "System Environmental Variables"
+	System.getenv().each {
+		println it;
+	}
+  }
+
+	repositories {
+		mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+	}
+
+	dependencies {
+		classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
+        classpath 'io.franzbecker:gradle-lombok:3.1.0'
+	}
+}
+
+class Version {
+	String buildNumberString = System.getenv("BUILD_NUMBER")
+
+	String toString() {
+		if (buildNumberString == null) {
+			"1.0.0.5"
+
+		} else {
+			int buildNumber = Integer.parseInt(buildNumberString)
+
+			"1.0.0.$buildNumber"
+		}
+	}
+}
+
+  apply plugin: 'java'
+  apply plugin: 'eclipse'
+  apply plugin: 'project-report'
+  apply plugin: 'maven-publish'
+  apply plugin: 'distribution'
+  
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+  compileJava.options.encoding = 'UTF-8'
+  
+  group='red.steady'
+
+  version = new Version().toString();
+ 
+  repositories {
+    jcenter()
+    mavenCentral()
+    maven { url "http://repo.spring.io/release/" }
+   
+    maven { url "http://javaxdelta.sourceforge.net/maven2/repository" }
+    maven { url "https://repository.jboss.org/nexus/content/repositories/deprecated" }
+    //maven { url "https://swt-repo.googlecode.com/svn/repo/" }
+    maven { url "http://maven-eclipse.github.io/maven" }
+    maven { url "http://mvnrepository.com/" }
+    maven { url "http://archiva.fdvs.com.ar/repository/public1/" }
+    maven { url "http://maven.cloudhopper.com/repos/third-party/" }
+    maven { url "http://repo.maven.apache.org/maven2" }
+    
+    maven { url "https://repo.boundlessgeo.com/main/" }
+  }
+
+  test.useTestNG()
+
+  task allDeps(type: DependencyReportTask) {}
+
+
+
+publishing {
+  def artifactoryDeployUser = System.getenv("PUBLISH_REPO_USER")
+  def artifactoryDeployPass = System.getenv("PUBLISH_REPO_PASSWORD")
+
+  repositories {
+    maven {
+    credentials {
+    username artifactoryDeployUser
+    password artifactoryDeployPass
+    }
+
+    url "http://redmindset.com:8081/artifactory/one-thing"
+    }
+  }
+}
+
+apply from: 'dependencies.gradle'
+apply from: 'distribution.gradle'
+    

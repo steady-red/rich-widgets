@@ -1,0 +1,116 @@
+dependencies {
+  compile fileTree(dir: 'libs', include: '*.jar')
+  compile fileTree(dir: 'libs-jface', include: '*.jar')
+  
+  // https://github.com/paul-hammant/paranamer - access parameter names
+  compile group: 'com.thoughtworks.paranamer', name: 'paranamer', version: '2.8'
+  
+  // https://github.com/DmitriiShamrikov/mslinks - create windows shortcuts
+  compile group: 'com.github.vatbub', name: 'mslinks', version: '1.0.5'
+
+  compile group: 'jfree', name: 'jfreechart', version: '1.0.13'
+  compile group: 'net.sf.nachocalendar', name: 'nachocalendar', version: '0.25'
+  compile group: 'com.jgoodies', name: 'jgoodies-forms', version: '1.9.0'
+
+  compile group: 'commons-io', name: 'commons-io', version: '2.6'
+  
+  compile group: 'com.nothome', name: 'javaxdelta', version:'2.0.0'
+  compile group: 'trove', name: 'trove', version:'2.1.1'
+  
+  // https://github.com/java-native-access/jna
+  compile group: 'net.java.dev.jna', name: 'jna', version: '5.5.0'
+  compile group: 'net.java.dev.jna', name: 'jna-platform', version: '5.5.0'
+
+  // https://github.com/whitesource/pecoff4j-maven
+  compile group: 'org.whitesource', name: 'pecoff4j', version: '0.0.2.1'
+ 
+  // https://github.com/jOOQ/jOOR
+  compile group: 'org.jooq', name: 'joor-java-8', version: '0.9.12'
+  
+  // http://www.javazoom.net/jlgui/api.html
+  // http://www.javazoom.net/jlgui/developerguide.html 
+  compile(group: 'com.googlecode.soundlibs', name: 'basicplayer', version: '3.0.0.0') { // 3 required: 'com.googlecode.soundlibs:mp3spi:1.9.5.4', 'com.googlecode.soundlibs:tritonus-share:0.3.7.4' and 'org.slf4j:slf4j-api'
+    exclude group: 'org.slf4j', module: 'slf4j-api'
+  }
+  // http://www.javazoom.net/mp3spi/mp3spi.html
+  compile group: 'com.googlecode.soundlibs', name: 'mp3spi', version: '1.9.5.4'// 2 required: 'com.googlecode.soundlibs:jlayer:1.0.1.4' and 'com.googlecode.soundlibs:tritonus-share:0.3.7.4'
+  // 
+  compile group: 'com.googlecode.soundlibs', name: 'tritonus-share', version: '0.3.7.4' // 0 required dependencies
+  // http://www.javazoom.net/vorbisspi/vorbisspi.html
+  compile group: 'com.googlecode.soundlibs', name: 'vorbisspi', version: '1.0.3.3'// 2 required: 'com.googlecode.soundlibs:jorbis:0.0.17.4' and 'com.googlecode.soundlibs:tritonus-share:0.3.7.4'
+  
+  ///
+  compile group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.0'
+  ///
+  
+  // https://publicobject.com/glazedlists/documentation/swt.html
+  // http://www.glazedlists.com/documentation/swt
+  // https://publicobject.com/glazedlistsdeveloper/ - Swing??
+  // http://www.glazedlists.com/documentation/tutorial
+  // http://www.jfree.org/jfreechart/ available as extension
+  // https://www.eclipse.org/articles/Article-TreeViewer/TreeViewerArticle.htm
+  // https://www.vogella.com/tutorials/EclipseJFace/article.html
+  // https://www.vogella.com/tutorials/GlazedLists/article.html
+  // https://www.vogella.com/tutorials/NatTable/article.html
+  // https://www.vogella.com/tutorials/NatTableGlazedLists/article.html
+  compile group: 'com.glazedlists', name: 'glazedlists', version: '1.11.0'
+
+	compile group: 'org.apache.avro', name: 'avro', version: '1.9.1'
+	//compile 'org.apache.commons:commons-compress:1.10'
+
+	compile(group: 'commons-io', name: 'commons-io', version: '2.6')
+
+	compile(group: 'org.freemarker', name: 'freemarker', version: '2.3.28')
+	
+	// Encryption and Decryption http://www.jasypt.org/
+	compile(group: 'org.jasypt', name: 'jasypt', version: '1.9.2') // *** No compile dependencies (but two optional provided ones) 
+
+	compile(group: 'com.google.code.gson', name: 'gson', version:'2.4') // *** No compile dependencies 
+
+	compile group: 'com.mashape.unirest', name: 'unirest-java', version: '1.4.9'
+	
+	compile group: 'org.apache.commons', name: 'commons-text', version: '1.3'
+	compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.1'
+
+	// https://xmlgraphics.apache.org/batik/
+	// See also... https://github.com/kirill-grouchnikov/radiance Swing GUI using batik
+	compile group: 'org.apache.xmlgraphics', name: 'batik-all', version: '1.12'	
+ 
+	compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
+	
+	compile 'com.typesafe:config:1.2.1' // *** No compile dependencies
+ 	  
+	// SSH and http://www.jcraft.com/jsch/
+	compile 'com.jcraft:jsch:0.1.53' // *** No compile dependencies (but one optional com.jcraft:jzlib)
+	//https://github.com/lucastheisen/jsch-extension
+	//compile group: 'com.pastdev', name: 'jsch-extension', version: '0.1.9'
+	
+	// Templating http://freemarker.org/
+	compile 'org.freemarker:freemarker:2.3.23' // *** No compile dependencies
+		
+	// Encryption and Decryption http://www.jasypt.org/
+	compile(group: 'org.jasypt', name: 'jasypt', version: '1.9.2') // *** No compile dependencies (but two optional provided ones) 
+		
+	// Faster and also linear (and completes with finite time and memory unlike Java's Regex processing)
+	// https://github.com/google/re2j
+	  
+	compile group: 'com.google.re2j', name: 're2j', version: '1.1' // *** No compile dependencies
+  
+	// For CronExpression
+	compile 'com.google.guava:guava:18.0'
+	compile 'joda-time:joda-time:2.5'
+	compile group: 'org.quartz-scheduler', name: 'quartz', version:'2.2.1'
+  
+
+  compileOnly 'org.projectlombok:lombok:1.16.18' // *** No compile dependencies
+  
+  // Testing
+  testCompileOnly 'org.projectlombok:lombok:1.16.18' // *** No compile dependencies
+  annotationProcessor 'org.projectlombok:lombok:1.16.18'
+
+  testCompile(group: 'junit', name: 'junit', version: '4.12') {
+    exclude module: 'org.hamcrest'
+  }
+  testCompile group: 'pl.pragmatists', name: 'JUnitParams', version: '1.1.1'
+  testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+}

@@ -1,0 +1,143 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>com.iredfred</groupId>
+    <artifactId>RedWeb</artifactId>
+    <version>1.0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <artifactId>RedWebAppClient</artifactId>
+  <version>3.2.1.1</version>
+
+  <name>RedWebAppClient</name>
+
+  <description>RedWebApp Client-side application</description>
+
+  <dependencies>
+     
+     <dependency>
+      <groupId>com.iredfred</groupId>
+      <artifactId>${swt.extra.artifactId}</artifactId>
+	  <version>${s.windows.version}</version>
+    </dependency>
+
+    <dependency>
+    	<groupId>com.iredfred</groupId>
+    	<artifactId>SWT</artifactId>
+	  <version>${s.windows.version}</version>
+    </dependency>
+
+    <dependency>
+	  <groupId>com.iredfred</groupId>
+	  <artifactId>RedWebAppCommon</artifactId>
+	  <version>${s.windows.version}</version>
+    </dependency>
+
+    <dependency>
+	  <groupId>com.iredfred</groupId>
+	  <artifactId>RedWebAppTunnelCommon</artifactId>
+	  <version>${s.windows.version}</version>
+    </dependency>
+
+	<!-- https://github.com/lcaron/opal -->
+	<dependency>
+	  <groupId>opal</groupId>
+	  <artifactId>opal</artifactId>
+	  <version>1.0.8</version>
+
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/opal-1.0.8.jar</systemPath>
+	</dependency>
+
+	<dependency>
+      <groupId>org.sf.feeling</groupId>
+      <artifactId>swt.win32.ext</artifactId>
+      <version>1.1.0</version>
+
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/org.sf.feeling.swt.win32.extension_1.1.0.jar</systemPath>
+	</dependency>
+
+  </dependencies>
+ 
+ 
+        <build>
+                <plugins>
+                        <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-shade-plugin</artifactId>
+                                <version>1.7.1</version>
+                                <executions>
+                                        <execution>
+                                                <phase>package</phase>
+                                                <goals>
+                                                        <goal>shade</goal>
+                                                </goals>
+                                        </execution>
+                                </executions>
+								<configuration>
+								    <filters>
+								        <filter>
+								            <artifact>*:*</artifact>
+								            <excludes>
+								                <exclude>META-INF/*.SF</exclude>
+								                <exclude>META-INF/*.DSA</exclude>
+								                <exclude>META-INF/*.RSA</exclude>
+								            </excludes>
+								        </filter>
+								    </filters>                                        <shadedArtifactAttached>true</shadedArtifactAttached>
+                                        <shadedClassifierName>shaded</shadedClassifierName>
+                                        <transformers>
+                                                <transformer
+                                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                                        <mainClass>com.iredfred.w3windowsclient.Launcher.W3Windows_Client</mainClass>
+                                                </transformer>
+                                        </transformers>
+                                </configuration>
+                        </plugin>
+                        <plugin>
+                                <groupId>com.akathist.maven.plugins.launch4j</groupId>
+                                <artifactId>launch4j-maven-plugin</artifactId>
+                                <version>1.5.1</version>
+                                <executions>
+                                        <execution>
+                                                <id>l4j-clui</id>
+                                                <phase>package</phase>
+                                                <goals>
+                                                        <goal>launch4j</goal>
+                                                </goals>
+                                                <configuration>
+                                                        <headerType>gui</headerType>
+                                                        <jar>${project.build.directory}/${artifactId}-${version}-shaded.jar</jar>
+                                                        <outfile>${project.build.directory}/${red.web.app.client.name}</outfile>
+                                                        <downloadUrl>http://java.com/download</downloadUrl>
+                                                        <classPath>
+                                                                <mainClass>com.iredfred.w3windowsclient.Launcher.W3Windows_Client</mainClass>
+                                                                <preCp>anything</preCp>
+                                                        </classPath>
+                                                        <icon>src/main/resources/resources/ico/redwebapp-48x48.ico</icon>
+                                                        <jre>
+                                                                <minVersion>1.7.0</minVersion>
+                                                                <jdkPreference>preferJre</jdkPreference>
+                                                        </jre>
+                                                        <versionInfo>
+                                                                <fileVersion>3.2.1.1</fileVersion>
+                                                                <txtFileVersion>${project.version}</txtFileVersion>
+                                                                <fileDescription>${project.name}</fileDescription>
+                                                                <copyright>2013 Red Fred</copyright>
+                                                                <productVersion>3.2.1.1</productVersion>
+                                                                <txtProductVersion>3.2.1.1</txtProductVersion>
+                                                                <productName>${project.name}</productName>
+                                                                <companyName>Red Fred</companyName>
+                                                                <internalName>RedWebApp</internalName>
+                                                                <originalFilename>${red.web.app.client.name}</originalFilename>
+                                                        </versionInfo>
+                                                </configuration>
+                                        </execution>
+                                </executions>
+                        </plugin>
+                </plugins>
+        </build>   
+
+</project>
