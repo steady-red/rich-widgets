@@ -1,6 +1,5 @@
 package red.steady.swt.widgets;
 
-import org.eclipse.nebula.widgets.opal.nebulaslider.NebulaSliderColorScheme;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
@@ -10,6 +9,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
 import red.steady.richWidgets.utils.RichUtils;
+import red.steady.richWidgets.RichSliderColorScheme;
 import red.steady.richWidgets.utils.FormLayoutDataFactory;
 
 public class VolumeControlPanel extends SpWindow {
@@ -19,11 +19,11 @@ public class VolumeControlPanel extends SpWindow {
 	private final VolumeControlButtonPanel volumeControlButtonPanel;
 	private final String[] volumeControlNames;
 
-	private final NebulaSliderColorScheme nebulaSliderColorScheme;
+	private final RichSliderColorScheme nebulaSliderColorScheme;
 
 	public VolumeControlPanel(Shell parent, VolumeControlButtonPanel volumeControlButtonPanel,
 			String[] volumeControlNames, //
-			NebulaSliderColorScheme nebulaSliderColorScheme) {
+			RichSliderColorScheme nebulaSliderColorScheme) {
 		super(parent, //
 				SWT.NO_TRIM);
 		RichUtils.checkNotNullParameter(volumeControlButtonPanel, "volumeControlButtonPanel");

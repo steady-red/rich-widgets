@@ -10,7 +10,7 @@
  * Contributors: Laurent CARON (laurent.caron at gmail dot com) - Initial
  * implementation and API
  *******************************************************************************/
-package org.eclipse.nebula.widgets.opal.nebulaslider;
+package red.steady.richWidgets;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,7 @@ import org.eclipse.swt.widgets.Widget;
  * <dd>Selection</dd>
  * </dl>
  */
-public class NebulaSlider extends Canvas {
+public class RichSlider extends Canvas {
 
 	private static final int H_MARGIN = 5;
 //	private static final int BAR_HEIGHT = 12;
@@ -50,7 +50,7 @@ public class NebulaSlider extends Canvas {
 	private static final int SELECTOR_WIDTH = 40; // TODO: this should be base on width of text of maximum
 	private static final int SELECTOR_HEIGHT = 20;
 
-	private final NebulaSliderColorScheme nebulaSliderColorScheme;
+	private final RichSliderColorScheme nebulaSliderColorScheme;
 
 	private int minimum;
 	private int maximum;
@@ -93,15 +93,15 @@ public class NebulaSlider extends Canvas {
 	 *
 	 * @see Widget#getStyle()
 	 */
-	public NebulaSlider(Composite parent, int style) {
-		this(parent, style, (NebulaSliderColorScheme) null);
+	public RichSlider(Composite parent, int style) {
+		this(parent, style, (RichSliderColorScheme) null);
 	}
 
-	public NebulaSlider(Composite parent, int style, NebulaSliderColorScheme nebulaSliderColorScheme) {
+	public RichSlider(Composite parent, int style, RichSliderColorScheme nebulaSliderColorScheme) {
 		super(parent, checkStyle(style) | SWT.DOUBLE_BUFFERED);
 
 		this.nebulaSliderColorScheme //
-				= ((nebulaSliderColorScheme == null) ? NebulaSliderColorScheme.builder().control(this).build()
+				= ((nebulaSliderColorScheme == null) ? RichSliderColorScheme.builder().control(this).build()
 						: nebulaSliderColorScheme);
 
 		selectionListeners = new ArrayList<>();
@@ -307,7 +307,7 @@ public class NebulaSlider extends Canvas {
 
 				private void widgetSelection(SelectionEvent e) {
 					final Event event = new Event();
-					event.widget = NebulaSlider.this;
+					event.widget = RichSlider.this;
 					event.display = getDisplay();
 					event.type = SWT.Selection;
 					listener.handleEvent(event);

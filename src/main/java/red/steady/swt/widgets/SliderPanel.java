@@ -1,7 +1,5 @@
 package red.steady.swt.widgets;
 
-import org.eclipse.nebula.widgets.opal.nebulaslider.NebulaSlider;
-import org.eclipse.nebula.widgets.opal.nebulaslider.NebulaSliderColorScheme;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionEvent;
@@ -11,6 +9,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
+import red.steady.richWidgets.RichSlider;
+import red.steady.richWidgets.RichSliderColorScheme;
 import red.steady.richWidgets.utils.FormLayoutDataFactory;
 import red.steady.richWidgets.utils.SwtUtils;
 
@@ -19,13 +19,13 @@ class SliderPanel extends SpForm {
 	private final String volumeControlName;
 	private Color backgroundColor;
 
-	private final NebulaSliderColorScheme nebulaSliderColorScheme;
+	private final RichSliderColorScheme nebulaSliderColorScheme;
 
 	public SliderPanel(Composite parent, String volumeControlName) {
-		this(parent, volumeControlName, (NebulaSliderColorScheme) null);
+		this(parent, volumeControlName, (RichSliderColorScheme) null);
 	}
 
-	public SliderPanel(Composite parent, String volumeControlName, NebulaSliderColorScheme nebulaSliderColorScheme) {
+	public SliderPanel(Composite parent, String volumeControlName, RichSliderColorScheme nebulaSliderColorScheme) {
 		super(parent);
 
 		this.volumeControlName = volumeControlName;
@@ -81,7 +81,7 @@ class SliderPanel extends SpForm {
 				.toLeft(2)//
 				.build().apply(soundOffImageCanvas);
 
-		final NebulaSlider slider = new NebulaSlider(this, SWT.NONE, nebulaSliderColorScheme);
+		final RichSlider slider = new RichSlider(this, SWT.NONE, nebulaSliderColorScheme);
 		slider.setBackground(backgroundColor);
 		slider.setMinimum(0);
 		slider.setMaximum(100);

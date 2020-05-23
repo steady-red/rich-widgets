@@ -1,4 +1,4 @@
-package org.eclipse.nebula.widgets.opal.nebulaslider;
+package red.steady.richWidgets;
 
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Control;
@@ -9,7 +9,7 @@ import red.steady.richWidgets.utils.RichUtils;
 import red.steady.richWidgets.utils.SwtUtils;
 
 @Data
-public class NebulaSliderColorScheme {
+public class RichSliderColorScheme {
 	private final Color barInsideColor;
 	private final Color barBorderColor;
 	private final Color barSelectionColor;
@@ -19,7 +19,7 @@ public class NebulaSliderColorScheme {
 	private final Color selectorTextColor;
 
 	@Builder
-	private NebulaSliderColorScheme(Control control, //
+	private RichSliderColorScheme(Control control, //
 			Color barInsideColor, Color barBorderColor, Color barSelectionColor, //
 			Color selectorColor, Color selectorColorBorder, Color selectorTextColor) {
 		super();

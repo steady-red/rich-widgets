@@ -3,13 +3,13 @@ package red.steady.swt.widgets.gallery;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import org.eclipse.nebula.widgets.opal.nebulaslider.NebulaSlider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.MessageBox;
 
 import red.steady.richWidgets.FilePickerPanel;
+import red.steady.richWidgets.RichSlider;
 import red.steady.richWidgets.utils.FormLayoutDataFactory;
 import red.steady.richWidgets.utils.RichUtils;
 
@@ -18,18 +18,18 @@ public class ControlGalleryInfo {
 	public static ControlInfo[] controlInfosList//
 			= { //
 					ControlInfo.builder()//
-							.controlClass(NebulaSlider.class) //
-							.displayName(NebulaSlider.class.getSimpleName())//
+							.controlClass(RichSlider.class) //
+							.displayName(RichSlider.class.getSimpleName())//
 							.createControlFunction(new Function<Composite, Control>() {
 								@Override
 								public Control apply(Composite parent) {
-									return new NebulaSlider(parent, SWT.NULL);
+									return new RichSlider(parent, SWT.NULL);
 								}
 							})//
 							.createExampleControlsConsumer(new Consumer<Composite>() {
 								@Override
 								public void accept(Composite parent) {
-									NebulaSlider nebulaSlider = new NebulaSlider(parent, SWT.NULL);
+									RichSlider nebulaSlider = new RichSlider(parent, SWT.NULL);
 
 									FormLayoutDataFactory.fill(nebulaSlider);
 								}

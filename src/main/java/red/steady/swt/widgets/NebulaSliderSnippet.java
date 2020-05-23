@@ -1,6 +1,5 @@
 package red.steady.swt.widgets;
 
-import org.eclipse.nebula.widgets.opal.nebulaslider.NebulaSlider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -12,6 +11,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+
+import red.steady.richWidgets.RichSlider;
 
 /**
  * A simple snippet for the TextAssist Widget
@@ -36,7 +37,7 @@ public class NebulaSliderSnippet {
 		update.setLayoutData(new GridData(GridData.END, GridData.CENTER, false, false, 2, 1));
 		update.setText("Redraw Slider");
 
-		final NebulaSlider slider = new NebulaSlider(shell, SWT.NONE);
+		final RichSlider slider = new RichSlider(shell, SWT.NONE);
 		slider.setMinimum(0);
 		slider.setMaximum(1000);
 		slider.setValue(632);

@@ -1,12 +1,12 @@
 package red.steady.swt.widgets;
 
-import org.eclipse.nebula.widgets.opal.nebulaslider.NebulaSliderColorScheme;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
+import red.steady.richWidgets.RichSliderColorScheme;
 import red.steady.richWidgets.utils.SwtUtils;
 
 public class VolumeControlButtonPanel extends SpForm {
@@ -56,8 +56,8 @@ public class VolumeControlButtonPanel extends SpForm {
 
 		mainSpStackedForm.setTopControl(soundOnImageCanvas);
 
-		NebulaSliderColorScheme nebulaSliderColorScheme//
-				= NebulaSliderColorScheme.builder()//
+		RichSliderColorScheme nebulaSliderColorScheme//
+				= RichSliderColorScheme.builder()//
 						.control(VolumeControlButtonPanel.this)//
 						.selectorColor(SwtUtils.getAndDisposeColor(VolumeControlButtonPanel.this, 255, 0, 0))//
 						.build();

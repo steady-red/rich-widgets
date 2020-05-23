@@ -1,5 +1,6 @@
 package red.steady.richWidgets;
 
+import java.io.File;
 import java.util.function.Consumer;
 
 import org.eclipse.swt.SWT;
@@ -46,10 +47,15 @@ public class FilePickerPanel extends RichForm {
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				FileDialog fileDialog = new FileDialog(getShell());
-				fileDialog.open();
+				FileDialog fileDialog = new FileDialog(getShell(), SWT.MULTI);
+				String fullpath = fileDialog.open();
+				File directory = new File(fullpath).getParentFile();
 
 				String[] filenames = fileDialog.getFileNames();
+
+				for (int index = 0; index < filenames.length; index++) {
+					filenames[index] = directory.getAbsolutePath() + File.separatorChar + filenames[index];
+				}
 
 				if (filenames.length > 0) {
 					filesConsumer.accept(filenames);
