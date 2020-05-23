@@ -3,12 +3,8 @@ package red.steady.swt.widgets.gallery;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -18,6 +14,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import red.steady.richWidgets.RichComposite;
 import red.steady.richWidgets.RichForm;
+import red.steady.richWidgets.RichScrolledComposite;
 import red.steady.richWidgets.RichWindow;
 import red.steady.richWidgets.utils.CLabelFactory;
 import red.steady.richWidgets.utils.FormLayoutDataFactory;
@@ -26,7 +23,6 @@ import red.steady.richWidgets.utils.SwtUtils;
 public class RichWidgetGalleryMain extends ApplicationWindow implements RichGallery {
 
 	private RichComposite mainRichComposite;
-	private ScrolledComposite scrolledComposite;
 
 	public RichWidgetGalleryMain(Shell parentShell) {
 		super(parentShell);
@@ -38,28 +34,15 @@ public class RichWidgetGalleryMain extends ApplicationWindow implements RichGall
 
 		shell.setBounds(200, 200, 600, 400);
 
-		shell.addControlListener(new ControlListener() {
-			@Override
-			public void controlResized(ControlEvent e) {
-				Point newSize = mainRichComposite.computeSize(SWT.DEFAULT, SWT.DEFAULT);
-				System.out.println("newSize: " + newSize);
-				mainRichComposite.setSize(newSize);
-			}
-
-			@Override
-			public void controlMoved(ControlEvent e) {
-			}
-		});
-
 		shell.setText("Rich Widget Gallery");
 	}
 
 	@Override
 	protected Control createContents(Composite parent) {
-		scrolledComposite = new ScrolledComposite(parent, SWT.H_SCROLL | SWT.V_SCROLL);
-
-		mainRichComposite = new RichComposite(scrolledComposite);
+		mainRichComposite = new RichComposite(parent);
 		mainRichComposite.setLayout(new GridLayout(2, true));
+
+		RichScrolledComposite richScrolledComposite = new RichScrolledComposite(parent, mainRichComposite);
 
 		for (ControlInfo widgetInfo : ControlGalleryInfo.controlInfosList) {
 			RichForm richForm = new RichForm(mainRichComposite);
@@ -81,7 +64,7 @@ public class RichWidgetGalleryMain extends ApplicationWindow implements RichGall
 					parent.getDisplay().asyncExec(new Runnable() {
 						@Override
 						public void run() {
-							RichWindow richWindow = new RichWindow(getShell());
+							RichWindow richWindow = new RichWindow(getShell(), SWT.SHELL_TRIM);
 
 							RichForm contentForm = new RichForm(richWindow);
 							widgetInfo.getCreateExampleControlsConsumer().accept(contentForm);
@@ -104,12 +87,7 @@ public class RichWidgetGalleryMain extends ApplicationWindow implements RichGall
 					.build().apply(button);
 		}
 
-		scrolledComposite.setContent(mainRichComposite);
-		Point mainFormSize = mainRichComposite.computeSize(SWT.DEFAULT, SWT.DEFAULT);
-		System.out.println("mainFormSize: " + mainFormSize);
-		mainRichComposite.setSize(mainFormSize);
-
-		return scrolledComposite;
+		return richScrolledComposite;
 	}
 
 	public static void main(String[] args) {

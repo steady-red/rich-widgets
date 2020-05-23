@@ -4,11 +4,14 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.MessageBox;
 
 import red.steady.richWidgets.FilePickerPanel;
+import red.steady.richWidgets.RichForm;
+import red.steady.richWidgets.RichScrolledComposite;
 import red.steady.richWidgets.RichSlider;
 import red.steady.richWidgets.utils.FormLayoutDataFactory;
 import red.steady.richWidgets.utils.RichUtils;
@@ -86,6 +89,66 @@ public class ControlGalleryInfo {
 								}
 							})//
 							.build(), //
+
+					ControlInfo.builder()//
+							.controlClass(RichScrolledComposite.class) //
+							.displayName(RichScrolledComposite.class.getSimpleName())//
+							.createControlFunction(new Function<Composite, Control>() {
+								@Override
+								public Control apply(Composite parent) {
+									RichForm exampleParent = new RichForm(parent, SWT.BORDER) {
+										@Override
+										public Point computeSize(int wHint, int hHint, boolean changed) {
+											return new Point(80, 80);
+										}
+									};
+
+									FormLayoutDataFactory.fill(exampleParent);
+
+									RichForm colorRichForm = new RichForm(exampleParent, SWT.BORDER) {
+										@Override
+										public Point computeSize(int wHint, int hHint, boolean changed) {
+											return new Point(100, 100);
+										}
+									};
+									colorRichForm.setBackground(0, 0, 255);
+
+									RichScrolledComposite richScrolledComposite //
+									= new RichScrolledComposite(exampleParent, colorRichForm);
+
+									FormLayoutDataFactory.fill(richScrolledComposite);
+
+									return exampleParent;
+								}
+							})//
+							.createExampleControlsConsumer(new Consumer<Composite>() {
+								@Override
+								public void accept(Composite parent) {
+									RichForm exampleParent = new RichForm(parent, SWT.BORDER) {
+										@Override
+										public Point computeSize(int wHint, int hHint, boolean changed) {
+											return new Point(80, 80);
+										}
+									};
+
+									FormLayoutDataFactory.fill(exampleParent);
+
+									RichForm colorRichForm = new RichForm(exampleParent, SWT.BORDER) {
+										@Override
+										public Point computeSize(int wHint, int hHint, boolean changed) {
+											return new Point(100, 100);
+										}
+									};
+									colorRichForm.setBackground(0, 0, 255);
+
+									RichScrolledComposite richScrolledComposite //
+									= new RichScrolledComposite(exampleParent, colorRichForm);
+
+									FormLayoutDataFactory.fill(richScrolledComposite);
+								}
+							})//
+							.build(), //
+
 			};
 
 }
