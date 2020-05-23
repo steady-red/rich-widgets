@@ -1,7 +1,12 @@
 package red.steady.richWidgets.utils;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.MessageBox;
@@ -146,6 +151,21 @@ public class SwtUtils {
 
 	public static Color getSystemColor(Display display, final int id) {
 		return display.getSystemColor(id);
+	}
+
+	public static Image createImage(Device device, String imageName) {
+		return createImage(device, SwtUtils.class, imageName);
+	}
+
+	public static Image createImage(Device device, Class<?> aClass, String imageName) {
+		try (InputStream inputStream = InputStreamUtils.getInputStream(aClass, imageName);) {
+
+			return new Image(device, inputStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+
+			throw new RuntimeException("Failed to create image", e);
+		}
 	}
 
 }
