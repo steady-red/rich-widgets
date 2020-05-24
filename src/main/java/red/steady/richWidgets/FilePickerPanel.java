@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 
+import red.steady.richWidgets.application.RichApplication;
 import red.steady.richWidgets.utils.FormLayoutDataFactory;
 import red.steady.richWidgets.utils.SwtUtils;
 
@@ -27,8 +28,12 @@ public class FilePickerPanel extends RichForm {
 
 	private final Consumer<String[]> filesConsumer;
 
-	public FilePickerPanel(Composite parent, Consumer<String[]> filesConsumer) {
-		super(parent);
+	public FilePickerPanel(RichComposite parent, Consumer<String[]> filesConsumer) {
+		this(parent.getRichApplication(), parent, filesConsumer);
+	}
+
+	public FilePickerPanel(RichApplication richApplication, Composite parent, Consumer<String[]> filesConsumer) {
+		super(richApplication, parent);
 
 		this.filesConsumer = filesConsumer;
 

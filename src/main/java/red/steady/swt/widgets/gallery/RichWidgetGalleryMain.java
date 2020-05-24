@@ -16,6 +16,7 @@ import red.steady.richWidgets.RichComposite;
 import red.steady.richWidgets.RichForm;
 import red.steady.richWidgets.RichScrolledComposite;
 import red.steady.richWidgets.RichWindow;
+import red.steady.richWidgets.application.RichApplication;
 import red.steady.richWidgets.utils.CLabelFactory;
 import red.steady.richWidgets.utils.FormLayoutDataFactory;
 import red.steady.richWidgets.utils.SwtUtils;
@@ -24,8 +25,12 @@ public class RichWidgetGalleryMain extends ApplicationWindow implements RichGall
 
 	private RichComposite mainRichComposite;
 
-	public RichWidgetGalleryMain(Shell parentShell) {
+	private final RichApplication richApplication;
+
+	public RichWidgetGalleryMain(RichApplication richApplication, Shell parentShell) {
 		super(parentShell);
+
+		this.richApplication = richApplication;
 	}
 
 	@Override
@@ -39,7 +44,7 @@ public class RichWidgetGalleryMain extends ApplicationWindow implements RichGall
 
 	@Override
 	protected Control createContents(Composite parent) {
-		mainRichComposite = new RichComposite(parent);
+		mainRichComposite = new RichComposite(richApplication, parent);
 		mainRichComposite.setLayout(new GridLayout(2, true));
 
 		RichScrolledComposite richScrolledComposite = new RichScrolledComposite(parent, mainRichComposite);
@@ -66,7 +71,7 @@ public class RichWidgetGalleryMain extends ApplicationWindow implements RichGall
 						public void run() {
 							RichWindow richWindow = new RichWindow(getShell(), SWT.SHELL_TRIM);
 
-							RichForm contentForm = new RichForm(richWindow);
+							RichForm contentForm = new RichForm(richApplication, richWindow);
 							widgetInfo.getCreateExampleControlsConsumer().accept(contentForm);
 
 							richWindow.pack();
@@ -93,8 +98,9 @@ public class RichWidgetGalleryMain extends ApplicationWindow implements RichGall
 	public static void main(String[] args) {
 		Display display = new Display();
 		Shell shell = new Shell(display);
+		RichApplication richApplication = new RichApplication("RichWidgetGallery");
 
-		RichWidgetGalleryMain richWidgetGalleryMain = new RichWidgetGalleryMain(shell);
+		RichWidgetGalleryMain richWidgetGalleryMain = new RichWidgetGalleryMain(richApplication, shell);
 
 		richWidgetGalleryMain.setBlockOnOpen(true);
 

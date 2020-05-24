@@ -5,11 +5,11 @@ import java.util.function.Function;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.MessageBox;
 
 import red.steady.richWidgets.FilePickerPanel;
+import red.steady.richWidgets.RichComposite;
 import red.steady.richWidgets.RichForm;
 import red.steady.richWidgets.RichScrolledComposite;
 import red.steady.richWidgets.RichSlider;
@@ -23,15 +23,15 @@ public class ControlGalleryInfo {
 					ControlInfo.builder()//
 							.controlClass(RichSlider.class) //
 							.displayName(RichSlider.class.getSimpleName())//
-							.createControlFunction(new Function<Composite, Control>() {
+							.createControlFunction(new Function<RichComposite, Control>() {
 								@Override
-								public Control apply(Composite parent) {
+								public Control apply(RichComposite parent) {
 									return new RichSlider(parent, SWT.NULL);
 								}
 							})//
-							.createExampleControlsConsumer(new Consumer<Composite>() {
+							.createExampleControlsConsumer(new Consumer<RichComposite>() {
 								@Override
-								public void accept(Composite parent) {
+								public void accept(RichComposite parent) {
 									RichSlider nebulaSlider = new RichSlider(parent, SWT.NULL);
 
 									FormLayoutDataFactory.fill(nebulaSlider);
@@ -42,9 +42,9 @@ public class ControlGalleryInfo {
 					ControlInfo.builder()//
 							.controlClass(FilePickerPanel.class) //
 							.displayName(FilePickerPanel.class.getSimpleName())//
-							.createControlFunction(new Function<Composite, Control>() {
+							.createControlFunction(new Function<RichComposite, Control>() {
 								@Override
-								public Control apply(Composite parent) {
+								public Control apply(RichComposite parent) {
 									Consumer<String[]> fileConsumer //
 									= new Consumer<String[]>() {
 										@Override
@@ -64,9 +64,9 @@ public class ControlGalleryInfo {
 									return new FilePickerPanel(parent, fileConsumer);
 								}
 							})//
-							.createExampleControlsConsumer(new Consumer<Composite>() {
+							.createExampleControlsConsumer(new Consumer<RichComposite>() {
 								@Override
-								public void accept(Composite parent) {
+								public void accept(RichComposite parent) {
 									Consumer<String[]> fileConsumer //
 									= new Consumer<String[]>() {
 										@Override
@@ -93,9 +93,9 @@ public class ControlGalleryInfo {
 					ControlInfo.builder()//
 							.controlClass(RichScrolledComposite.class) //
 							.displayName(RichScrolledComposite.class.getSimpleName())//
-							.createControlFunction(new Function<Composite, Control>() {
+							.createControlFunction(new Function<RichComposite, Control>() {
 								@Override
-								public Control apply(Composite parent) {
+								public Control apply(RichComposite parent) {
 									RichForm exampleParent = new RichForm(parent, SWT.BORDER) {
 										@Override
 										public Point computeSize(int wHint, int hHint, boolean changed) {
@@ -121,9 +121,9 @@ public class ControlGalleryInfo {
 									return exampleParent;
 								}
 							})//
-							.createExampleControlsConsumer(new Consumer<Composite>() {
+							.createExampleControlsConsumer(new Consumer<RichComposite>() {
 								@Override
-								public void accept(Composite parent) {
+								public void accept(RichComposite parent) {
 									RichForm exampleParent = new RichForm(parent, SWT.BORDER) {
 										@Override
 										public Point computeSize(int wHint, int hHint, boolean changed) {

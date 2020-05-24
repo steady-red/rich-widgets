@@ -5,7 +5,6 @@ import java.io.File;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
@@ -17,6 +16,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+import red.steady.richWidgets.RichForm;
+import red.steady.richWidgets.application.RichApplication;
 import red.steady.richWidgets.utils.FormLayoutDataFactory;
 
 public class CreateGalleryImagesMain implements RichGallery {
@@ -35,7 +36,10 @@ public class CreateGalleryImagesMain implements RichGallery {
 
 		Control lastControl = null;
 
-		Button button = new Button(shell, SWT.PUSH);
+		RichApplication richApplication = new RichApplication("CreateGalleryImages");
+		RichForm richForm = new RichForm(richApplication, shell);
+
+		Button button = new Button(richForm, SWT.PUSH);
 		button.setText("Copy");
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -64,15 +68,15 @@ public class CreateGalleryImagesMain implements RichGallery {
 		lastControl = button;
 
 		for (ControlInfo widgetInfo : ControlGalleryInfo.controlInfosList) {
-			Control control = widgetInfo.getCreateControlFunction().apply(shell);
+			Control control = widgetInfo.getCreateControlFunction().apply(richForm);
 			widgetInfo.setCreatedControl(control);
-			control.setBackground(new Color(shell.getDisplay(), 0, 0, 0));
 
 			FormLayoutDataFactory.builder()//
 					.toLeft(0)//
 					.topControl(lastControl).topOffset(2)//
 					.build().apply(control);
 			shell.layout();
+			richForm.layout();
 
 			Point controlSize = control.getSize();
 //					control.redraw(0, 0, controlSize.x, controlSize.y, true);
